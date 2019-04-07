@@ -1,0 +1,50 @@
+<div>
+  <div [ngClass]="'header'">
+    <div *ngIf="(courseName$ | async) as courseName">
+      <span class="course-name-title">{{ courseName }}</span>
+      <span class="header-item">{{ courseName }} Messages</span>
+      <i class="material-icons">
+        account_circle
+      </i>
+    </div>
+  </div>
+  <div id="dashboard">
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab label="{{ 'PREFERENCES' | translate }}">
+        <app-preferences-shell></app-preferences-shell>
+      </mat-tab>
+      <mat-tab label="{{ 'DASHBOARD' | translate }}">
+        <app-dashboard-shell></app-dashboard-shell>
+      </mat-tab>
+      <mat-tab label="{{ 'CLASSROOM' | translate }}">
+        <app-classroom-shell></app-classroom-shell>
+      </mat-tab>
+      <mat-tab disabled></mat-tab>
+      <mat-tab disabled></mat-tab>
+      <mat-tab disabled></mat-tab>
+
+      <mat-tab disabled
+        ><ng-template mat-tab-label
+          ><button
+            class="publish-button"
+            mat-button
+            (click)="handlePublishClick()"
+          >
+            {{ "Publish" | translate }}
+          </button></ng-template
+        ></mat-tab
+      >
+      <mat-tab disabled
+        ><ng-template mat-tab-label
+          ><button
+            class="preview-button"
+            mat-button
+            (click)="handlePublishClick()"
+          >
+            {{ "Preview" | translate }}
+          </button></ng-template
+        ></mat-tab
+      >
+    </mat-tab-group>
+  </div>
+</div>

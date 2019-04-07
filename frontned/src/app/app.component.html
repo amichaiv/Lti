@@ -1,0 +1,8 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <button (click)="setLang('he')">עברית</button>
+  <button (click)="setLang('en')">english</button>
+  <div [ngClass]="appDirectionIsRtl ? 'rtl' : 'ltr'">
+    <app-app-header></app-app-header>
+  </div>
+</div>
