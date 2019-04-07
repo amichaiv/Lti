@@ -11,9 +11,7 @@ export class AppComponent {
   constructor(private translate: TranslateService) {}
 
   setLang(lang: string) {
-    lang === "he"
-      ? (this.appDirectionIsRtl = true)
-      : (this.appDirectionIsRtl = false);
+    this.appDirectionIsRtl = lang === "he";
     this.translate.use(lang);
   }
 

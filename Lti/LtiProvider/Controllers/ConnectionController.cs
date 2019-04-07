@@ -14,16 +14,24 @@ namespace LtiProvider.Controllers
     {
         public async Task<IActionResult> Connect()
         {
-                // Parse and validate the request
-                var ltiRequest = await Request.ParseLtiRequestAsync();
+            // Parse and validate the request
 
-                var requestInfo = $"Hello {ltiRequest.LisPersonNameFull}{Environment.NewLine}"
-                                  + $"Welcome to CodeValue Lti Tool{Environment.NewLine}"
-                                  + $"Moodle Name: {ltiRequest.ToolConsumerInstanceName}{Environment.NewLine}"
-                                  + $"Course Name: {ltiRequest.ContextLabel}{Environment.NewLine}"
-                                  + $"Tool Title: {ltiRequest.ResourceLinkTitle}{Environment.NewLine}";
+            var ltiRequest = await Request.ParseLtiRequestAsync();
 
-                return Ok(requestInfo);
+            string courseName = ltiRequest.ContextLabel;
+            string username = ltiRequest.LisPersonNameFull;
+            string redirectHtml =
+              "<html>" +
+                "<head>" +
+                    "<meta http-equiv='refresh' content='0; url=http://localhost:4200/start?username=" + username + "&coursename=" + courseName + "'/>" +
+                "</head>" +
+              "</html>";
+
+            return new ContentResult()
+            {
+                Content = redirectHtml,
+                ContentType = "text/html"
+            };
         }
     }
 }
