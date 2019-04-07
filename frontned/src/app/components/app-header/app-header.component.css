@@ -1,0 +1,32 @@
+.header {
+  background-color: #4786ed;
+  height: 6em;
+  color: white;
+}
+
+.course-title {
+  margin: 0.5em;
+}
+.course-name-title {
+  width: 20em;
+  font-size: 4em;
+}
+
+.header-item {
+  width: 1em;
+}
+
+.mat-button {
+  width: 15em;
+  font-weight: bold;
+}
+
+.publish-button {
+  color: white;
+  background-color: darkblue;
+}
+
+.preview-button {
+  color: black;
+  border: 0.1em grey solid;
+}

@@ -1,0 +1,12 @@
+.rtl {
+  direction: rtl !important;
+}
+
+.ltr {
+  direction: ltr !important;
+}
+
+* {
+  font-family: Helvetica;
+  font-weight: bold;
+}

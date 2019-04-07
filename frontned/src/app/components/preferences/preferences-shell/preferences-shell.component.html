@@ -1,0 +1,26 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ "General" | translate }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-preferences-general></app-preferences-general>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ "Add_File" | translate }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-preferences-add-file></app-preferences-add-file>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ "Resources" | translate }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-preferences-resources></app-preferences-resources>
+  </mat-expansion-panel>
+</mat-accordion>
