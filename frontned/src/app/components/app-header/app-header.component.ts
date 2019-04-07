@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Select } from "@ngxs/store";
-import { AppState } from "src/app/store/state/app.state";
+import { AppStateModel } from "src/app/store/state/app.state";
 import { Observable } from "rxjs";
 
 @Component({
@@ -8,12 +8,8 @@ import { Observable } from "rxjs";
   templateUrl: "./app-header.component.html",
   styleUrls: ["./app-header.component.css"]
 })
-export class AppHeaderComponent implements OnInit {
-  navLinks: string[] = ["Preferences", "Dashboard", "Classroom"];
-  @Select(AppState.getCourseName) courseName$: Observable<any>;
-  constructor() {}
-
-  ngOnInit() {}
+export class AppHeaderComponent {
+  @Select((state: AppStateModel) => state.courseName) courseName$: Observable<string>;
 
   handlePublishClick() {
     console.log("publish clicked");

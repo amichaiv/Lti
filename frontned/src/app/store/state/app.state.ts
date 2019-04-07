@@ -18,28 +18,21 @@ export class AppState {
   static getUsername(state: AppStateModel) {
     return state.username;
   }
+
   @Selector()
   static getCourseName(state: AppStateModel) {
     return state.courseName;
   }
 
   @Action(SetCourseName)
-  setCourseName(
-    { getState, patchState }: StateContext<AppStateModel>,
-    { payload }: SetCourseName
-  ) {
-    const state = getState();
+  setCourseName({ patchState }: StateContext<AppStateModel>, { payload }: SetCourseName) {
     patchState({
       courseName: payload
     });
   }
 
   @Action(SetUserName)
-  setUserName(
-    { getState, patchState }: StateContext<AppStateModel>,
-    { payload }: SetUserName
-  ) {
-    const state = getState();
+  setUserName({ patchState }: StateContext<AppStateModel>, { payload }: SetUserName) {
     patchState({
       username: payload
     });
