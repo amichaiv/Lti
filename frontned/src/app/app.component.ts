@@ -1,5 +1,4 @@
-import { Component } from "@angular/core";
-import { TranslateService } from "./services/translate.service";
+import { Component, LOCALE_ID, Inject } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -7,17 +6,10 @@ import { TranslateService } from "./services/translate.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  appDirectionIsRtl: boolean = false;
-  constructor(private translate: TranslateService) {}
+  languageList = [
+    { code: "en", label: "English" },
+    { code: "he", label: "עברית" }
+  ];
 
-  setLang(lang: string) {
-    lang === "he"
-      ? (this.appDirectionIsRtl = true)
-      : (this.appDirectionIsRtl = false);
-    this.translate.use(lang);
-  }
-
-  isRtl() {
-    return true;
-  }
+  constructor(@Inject(LOCALE_ID) protected localeId: string) {}
 }

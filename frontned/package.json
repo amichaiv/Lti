@@ -2,6 +2,9 @@
   "name": "translation",
   "version": "0.0.0",
   "scripts": {
+    "build-locale:en": "ng build --prod --i18n-locale en --i18n-format xlf --i18n-file src/translate/messages.en.xlf --output-path=dist/en --baseHref /en/",
+    "build-locale:he": " ng build --prod --i18n-locale he --i18n-format xlf --i18n-file src/translate/messages.he.xlf --output-path=dist/he --baseHref /he/",
+    "build-locale": "npm run build-locale:en  && npm run build-locale:he",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

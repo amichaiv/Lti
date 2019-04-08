@@ -1,18 +1,14 @@
 <form [formGroup]="formGroup">
   <div>
-    <label>
-      {{ "Description" | translate }}:
+    <label i18n="@@AddFileFormDescriptionLabel">
+      Description:
       <input type="text" pInputText formControlName="description" />
     </label>
   </div>
   <div>
-    <label>
-      {{ "Add_Link" | translate }}:
-      <input type="text" pInputText formControlName="description" />
+    <label i18n="@@AddFileFormAddLinkLabel">
+      Add Link:
+      <input type="text" pInputText formControlName="link" />
     </label>
-  </div>
-
-  <div class="ui-inputgroup">
-    <input type="text" pInputText placeholder="Description" />
   </div>
 </form>

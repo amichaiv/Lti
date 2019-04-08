@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Select } from "@ngxs/store";
-import { AppStateModel } from "src/app/store/state/app.state";
+import { AppStateModel, AppState } from "src/app/store/state/app.state";
 import { Observable } from "rxjs";
 
 @Component({
@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
   styleUrls: ["./app-header.component.css"]
 })
 export class AppHeaderComponent {
-  @Select((state: AppStateModel) => state.courseName) courseName$: Observable<string>;
+  @Select(AppState.getCourseName) courseName$: Observable<string>;
 
   handlePublishClick() {
     console.log("publish clicked");

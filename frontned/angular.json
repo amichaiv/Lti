@@ -29,6 +29,20 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "he": {
+              "aot": true,
+              "i18nFile": "src/translate/messages.he.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "he",
+              "i18nMissingTranslation": "error"
+            },
+            "en": {
+              "aot": true,
+              "i18nFile": "src/translate/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -61,6 +75,12 @@
             "browserTarget": "translation:build"
           },
           "configurations": {
+            "he": {
+              "browserTarget": "translation:build:he"
+            },
+            "en": {
+              "browserTarget": "translation:build:en"
+            },
             "production": {
               "browserTarget": "translation:build:production"
             }
