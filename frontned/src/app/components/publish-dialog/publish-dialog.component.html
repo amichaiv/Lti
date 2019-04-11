@@ -1,0 +1,138 @@
+<div i18n-dir dir="ltr">
+  <div mat-dialog-title>
+    <div i18n="@@MainAccordionPublishButton" class="dialog-title">Publish</div>
+    <div>
+      <button mat-icon-button (click)="close()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!isAssignmentsSelected; else steps">
+    <mat-dialog-content>
+      <mat-table #table [dataSource]="dataSource">
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+        <!-- select assignemnt Checkbox Column-->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [aria-label]="checkboxLabel()"
+            >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef i18n="@@Name"
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+        <!-- student Column -->
+        <ng-container matColumnDef="student">
+          <mat-header-cell *matHeaderCellDef i18n="@@Student"
+            >student</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.student }}</mat-cell>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef i18n="@@Email"
+            >email</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="budget">
+          <mat-header-cell *matHeaderCellDef i18n="@@Budget"
+            >budget</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.budget }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          [ngClass]="{ hovered: row.hovered, highlighted: row.highlighted }"
+          (click)="row.highlighted = !row.highlighted"
+          (mouseover)="row.hovered = true"
+          (mouseout)="row.hovered = false"
+        ></mat-row>
+      </mat-table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button color="basic" (click)="close()" i18n="@@Cancel">
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="handleAfterSelectStudents(true)"
+        i18n="@@Next"
+      >
+        Next
+      </button>
+    </mat-dialog-actions>
+  </div>
+  <ng-template #steps>
+    <mat-horizontal-stepper labelPosition="bottom" #stepper>
+      <mat-step label="Overview">
+        <mat-dialog-content></mat-dialog-content>
+        <mat-dialog-actions>
+          <button
+            mat-raised-button
+            color="basic"
+            (click)="handleAfterSelectStudents(false)"
+            i18n="@@Cancel"
+          >
+            Cancel
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            i18n="@@Deploy"
+          >
+            Deploy
+          </button>
+        </mat-dialog-actions>
+      </mat-step>
+      <mat-step label="Deployment">
+        <mat-dialog-content></mat-dialog-content>
+        <mat-dialog-actions>
+          <button
+            mat-raised-button
+            color="basic"
+            matStepperPrevious
+            i18n="@@Cancel"
+          >
+            Cancel
+          </button>
+        </mat-dialog-actions>
+      </mat-step>
+      <mat-step label="Configuration">
+        3
+      </mat-step>
+    </mat-horizontal-stepper>
+  </ng-template>
+</div>

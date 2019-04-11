@@ -20,12 +20,18 @@ import { PreferencesGeneralComponent } from "./components/preferences/preference
 import { AccordionModule } from "primeng/accordion";
 import { RouterModule } from "@angular/router";
 import { PreferencesAddFileComponent } from "./components/preferences/preferences-add-file/preferences-add-file.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { InputTextModule } from "primeng/inputtext";
 import { PreferencesResourcesComponent } from "./components/preferences/preferences-resources/preferences-resources.component";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { PublishDialogComponent } from "./components/publish-dialog/publish-dialog.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatPaginatorModule } from "@angular/material";
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use("en");
@@ -41,10 +47,17 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ClassroomShellComponent,
     PreferencesGeneralComponent,
     PreferencesAddFileComponent,
-    PreferencesResourcesComponent
+    PreferencesResourcesComponent,
+    PublishDialogComponent
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatDialogModule,
+    MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
@@ -70,6 +83,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
       multi: true
     }
   ],
+  entryComponents: [PublishDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
