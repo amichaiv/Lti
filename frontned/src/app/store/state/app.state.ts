@@ -1,5 +1,6 @@
 import { Selector, Action, StateContext, State } from "@ngxs/store";
 import { SetCourseName, SetUserName } from "../actions/app.actions";
+import { LocalStorageService } from "src/app/services/local-storage.service";
 
 export class AppStateModel {
   courseName: string;
@@ -25,14 +26,20 @@ export class AppState {
   }
 
   @Action(SetCourseName)
-  setCourseName({ patchState }: StateContext<AppStateModel>, { payload }: SetCourseName) {
+  setCourseName(
+    { patchState }: StateContext<AppStateModel>,
+    { payload }: SetCourseName
+  ) {
     patchState({
       courseName: payload
     });
   }
 
   @Action(SetUserName)
-  setUserName({ patchState }: StateContext<AppStateModel>, { payload }: SetUserName) {
+  setUserName(
+    { patchState }: StateContext<AppStateModel>,
+    { payload }: SetUserName
+  ) {
     patchState({
       username: payload
     });

@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { StudentsTableElement } from '../models/students-table.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-classroom-shell",
@@ -6,7 +9,19 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./classroom-shell.component.scss"]
 })
 export class ClassroomShellComponent implements OnInit {
-  constructor() {}
+  students: StudentsTableElement[];
+  allStudentsCount: number;
+  noOfTeachingAssistants: number;
+  noOfProjectGroups: number;
+  totalSpendings: number;
+  constructor(private service: ClassroomService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.service.getStudents().subscribe(data => this.students = data);
+    this.service.getAllStudentsCount().subscribe(data => this.allStudentsCount = data);
+    this.service.getNoOfProjectGroups().subscribe(data => this.noOfProjectGroups = data);
+    this.service.getNoOfTeachingAssistants().subscribe(data => this.noOfTeachingAssistants = data);
+    this.service.getTotalSpendings().subscribe(data => this.totalSpendings = data);
+
+  }
 }

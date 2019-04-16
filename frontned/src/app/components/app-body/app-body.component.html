@@ -1,0 +1,46 @@
+<div id="dashboard">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab>
+      <ng-template mat-tab-label i18n="@@Preferences">Preferences</ng-template>
+      <ng-template matTabContent>
+        <app-preferences-shell></app-preferences-shell>
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label i18n="@@Dashboard">Dashboard</ng-template>
+      <ng-template matTabContent>
+        <app-dashboard-shell></app-dashboard-shell>
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label i18n="@@Classroom">Classroom</ng-template>
+      <ng-template matTabContent>
+        <app-classroom-shell></app-classroom-shell>
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label i18n="@@Submission">Submission</ng-template>
+      <ng-template matTabContent>
+        <app-submission-shell></app-submission-shell>
+      </ng-template>
+    </mat-tab>
+    <mat-tab disabled></mat-tab>
+    <mat-tab disabled></mat-tab>
+
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button color="primary" (click)="openPublishDialog()" i18n="@@MainAccordionPublishButton">
+          Publish
+        </button>
+      </ng-template>
+    </mat-tab>
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button color="basic" (click)="handlePreviewClick()" i18n="@@MainAccordionPreviewButton">
+          Preview
+        </button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <nav mat-tab-nav></nav>
+</div>

@@ -1,0 +1,23 @@
+.classroom-tools {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  height: em;
+  justify-content: flex-start;
+  color: #77787a;
+}
+
+.tools-item {
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.item-title {
+  align-self: center;
+  margin-left: 1em;
+}
+
+/deep/.mat-icon {
+  font-size: 2em;
+}

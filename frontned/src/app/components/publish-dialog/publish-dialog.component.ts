@@ -2,18 +2,10 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { MenuItem } from "primeng/api";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
-import { ELEMENT_DATA } from "src/app/mock-data";
-import { SelectionModel } from "@angular/cdk/collections";
 
-export interface TableElemant {
-  name: string;
-  student: string;
-  email: string;
-  budget: number;
-  position: number;
-  highlighted?: boolean;
-  hovered?: boolean;
-}
+import { SelectionModel } from "@angular/cdk/collections";
+import { TableElemant } from "../preferences/models/assignment-table.model";
+import { PreferencesService } from "src/app/services/preferences.service";
 
 @Component({
   selector: "app-publish-dialog",
@@ -25,9 +17,14 @@ export class PublishDialogComponent implements OnInit {
   displayedColumns: string[] = ["select", "name", "student", "email", "budget"];
   selectedAssignemnts: TableElemant[] = [];
   selection = new SelectionModel<TableElemant>(true, this.selectedAssignemnts);
-  dataSource = new MatTableDataSource<TableElemant>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<TableElemant>(
+    this.service.getAssignments()
+  );
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(public dialogRef: MatDialogRef<PublishDialogComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<PublishDialogComponent>,
+    private service: PreferencesService
+  ) {}
 
   ngOnInit() {
     this.isAssignmentsSelected = false;

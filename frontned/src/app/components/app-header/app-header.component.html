@@ -10,53 +10,6 @@
         account_circle
       </i>
     </div>
-  </div>
-  <div id="dashboard">
-    <mat-tab-group mat-align-tabs="start">
-      <mat-tab>
-        <ng-template mat-tab-label i18n="@@MainAccordionPreferencesTab"
-          >Preferences</ng-template
-        >
-        <app-preferences-shell></app-preferences-shell>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label i18n="@@MainAccordionDashboardTab"
-          >Dashboard</ng-template
-        >
-        <app-dashboard-shell></app-dashboard-shell>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label i18n="@@MainAccordionClassroomTab"
-          >Classroom</ng-template
-        >
-        <app-classroom-shell></app-classroom-shell>
-      </mat-tab>
-      <mat-tab disabled></mat-tab>
-      <mat-tab disabled></mat-tab>
-
-      <mat-tab disabled>
-        <ng-template mat-tab-label>
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="openPublishDialog()"
-            i18n="@@MainAccordionPublishButton"
-          >
-            Publish
-          </button>
-        </ng-template>
-      </mat-tab>
-      <mat-tab disabled>
-        <ng-template mat-tab-label>
-          <button
-            mat-raised-button
-            color="basic"
-            i18n="@@MainAccordionPreviewButton"
-          >
-            Preview
-          </button>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
+    <div *ngIf="(username$ | async) as username">{{ username }}</div>
   </div>
 </div>

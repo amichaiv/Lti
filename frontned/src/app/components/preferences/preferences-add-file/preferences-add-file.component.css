@@ -1,0 +1,13 @@
+input {
+  width: 100%;
+}
+label{
+    display: flex;
+    flex-direction: row;
+}
+.form-filed-title{
+    min-width: 6em;
+}
+.form-field{
+    margin:1em;
+}

@@ -1,17 +1,14 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
-import { TranslateService } from "./services/translate.service";
 import { AppComponent } from "./app.component";
 import { AppHeaderComponent } from "./components/app-header/app-header.component";
-import { TranslatePipe } from "./pipes/translate.pipe";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppState } from "./store/state/app.state";
 import { NgxsModule } from "@ngxs/store";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
 import { PreferencesShellComponent } from "./components/preferences/preferences-shell/preferences-shell.component";
-import { AppResolver } from "./app.resolver";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatTabsModule } from "@angular/material";
 import { DashboardShellComponent } from "./components/dashboard/dashboard-shell/dashboard-shell.component";
@@ -32,28 +29,38 @@ import { MatTableModule } from "@angular/material/table";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatPaginatorModule } from "@angular/material";
-
-export function setupTranslateFactory(service: TranslateService): Function {
-  return () => service.use("en");
-}
-
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { AppBodyComponent } from "./components/app-body/app-body.component";
+import { ClassroomStatsComponent } from "./components/classroom/classroom-stats/classroom-stats.component";
+import { ClassroomToolsComponent } from './components/classroom/classroom-tools/classroom-tools.component';
+import { ClassroomStudentsComponent } from './components/classroom/classroom-students/classroom-students.component';
+import { SubmissionShellComponent } from './components/submission/submission-shell/submission-shell.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
     AppHeaderComponent,
-    TranslatePipe,
     PreferencesShellComponent,
     DashboardShellComponent,
     ClassroomShellComponent,
     PreferencesGeneralComponent,
     PreferencesAddFileComponent,
     PreferencesResourcesComponent,
-    PublishDialogComponent
+    PublishDialogComponent,
+    PageNotFoundComponent,
+    AppBodyComponent,
+    ClassroomStatsComponent,
+    ClassroomToolsComponent,
+    ClassroomStudentsComponent,
+    SubmissionShellComponent
   ],
   imports: [
     BrowserModule,
     MatTableModule,
+    MatSelectModule,
     FormsModule,
+    MatInputModule,
     MatPaginatorModule,
     MatStepperModule,
     MatDialogModule,
@@ -73,17 +80,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     BrowserAnimationsModule,
     MatTabsModule
   ],
-  providers: [
-    AppResolver,
-    TranslateService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: setupTranslateFactory,
-      deps: [TranslateService],
-      multi: true
-    }
-  ],
+  providers: [],
   entryComponents: [PublishDialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

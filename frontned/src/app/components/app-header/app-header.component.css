@@ -15,18 +15,3 @@
 .header-item {
   width: 1em;
 }
-
-.mat-button {
-  width: 15em;
-  font-weight: bold;
-}
-
-.publish-button {
-  color: white;
-  background-color: darkblue;
-}
-
-.preview-button {
-  color: black;
-  border: 0.1em grey solid;
-}

@@ -1,14 +1,17 @@
-<form [formGroup]="formGroup">
-  <div>
-    <label i18n="@@AddFileFormDescriptionLabel">
-      Description:
-      <input type="text" pInputText formControlName="description" />
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label>
+      <div class="form-filed-title" i18n="@@Description">Description:</div>
+      <input type="text" pInputText formControlName="description">
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      <div class="form-filed-title" i18n="@@AddLink">Add Link:</div>
+      <input type="url" pInputText formControlName="link">
     </label>
   </div>
   <div>
-    <label i18n="@@AddFileFormAddLinkLabel">
-      Add Link:
-      <input type="text" pInputText formControlName="link" />
-    </label>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
   </div>
 </form>

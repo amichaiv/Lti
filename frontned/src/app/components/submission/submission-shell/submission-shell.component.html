@@ -1,0 +1,22 @@
+<div class="tab-container">
+  <div class="tab-main-content">
+    <div i18n="@@Submissions">Submissions</div>
+    <div class="filter-row">
+      <div><input type="text" pInputText></div>
+      <div>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Any Status
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)="filterByStatus('done')" i18n="@@Done">Done</a>
+            <a class="dropdown-item" (click)="filterByStatus('pending')" i18n="@@Pending">Pending</a>
+            <a class="dropdown-item" (click)="filterByStatus('')" i18n="@@Any">Any</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

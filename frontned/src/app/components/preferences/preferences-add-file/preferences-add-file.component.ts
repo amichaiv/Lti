@@ -8,12 +8,17 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class PreferencesAddFileComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  value = 'Clear me';
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
       description: new FormControl(""),
       link: new FormControl("")
     });
+  }
+
+  onSubmit() {
+    console.log(this.formGroup.value);
   }
 }
