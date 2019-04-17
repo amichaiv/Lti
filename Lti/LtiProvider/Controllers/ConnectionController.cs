@@ -106,11 +106,6 @@ namespace LtiProvider.Controllers
             return View("ConnectView");
         }
 
-        public IActionResult GetCourseEnrolled()
-        {
-
-        }
-
         private void SaveRequestData(HttpRequest request)
         {
             var form = request.Form;
