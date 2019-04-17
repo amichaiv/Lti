@@ -25,6 +25,7 @@ namespace LtiProvider.Controllers
     public class ConnectionController : Controller
     {
         private const string SharedSecret = "secret";
+        private const string TempVarForGrade = "0.84";
 
         private static readonly XmlSerializer ImsxRequestSerializer;
         private static readonly XmlSerializer ImsxResponseSerializer;
@@ -64,27 +65,27 @@ namespace LtiProvider.Controllers
             SaveRequestData(Request);
             return View("ConnectView");
         }
-       
+
         public IActionResult PostOutcome()
         {
             var data = _requestData.Get();
             var imsxEnvelope = new imsx_POXEnvelopeType
             {
-                imsx_POXHeader = new imsx_POXHeaderType {Item = new imsx_RequestHeaderInfoType()},
-                imsx_POXBody = new imsx_POXBodyType {Item = new replaceResultRequest()}
+                imsx_POXHeader = new imsx_POXHeaderType { Item = new imsx_RequestHeaderInfoType() },
+                imsx_POXBody = new imsx_POXBodyType { Item = new replaceResultRequest() }
             };
 
-            var imsxHeader = (imsx_RequestHeaderInfoType) imsxEnvelope.imsx_POXHeader.Item;
+            var imsxHeader = (imsx_RequestHeaderInfoType)imsxEnvelope.imsx_POXHeader.Item;
             imsxHeader.imsx_version = imsx_GWSVersionValueType.V10;
             imsxHeader.imsx_messageIdentifier = Guid.NewGuid().ToString();
 
-            var imsxBody = (replaceResultRequest) imsxEnvelope.imsx_POXBody.Item;
+            var imsxBody = (replaceResultRequest)imsxEnvelope.imsx_POXBody.Item;
             imsxBody.resultRecord = new ResultRecordType
             {
-                sourcedGUID = new SourcedGUIDType {sourcedId = data.ResultSourcedId},
+                sourcedGUID = new SourcedGUIDType { sourcedId = data.ResultSourcedId },
                 result = new ResultType
                 {
-                    resultScore = new TextType {language = LtiConstants.ScoreLanguage, textString = "0.54"}
+                    resultScore = new TextType { language = LtiConstants.ScoreLanguage, textString = TempVarForGrade }
                 }
             };
             // The LTI 1.1 specification states in 6.1.1. that the score in replaceResult should
