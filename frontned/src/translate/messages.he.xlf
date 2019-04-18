@@ -2,155 +2,117 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-     <trans-unit id="cb33b150a0b9e6b88a9aa5fa79f91888dd06784a" datatype="html">
+      <trans-unit id="cb33b150a0b9e6b88a9aa5fa79f91888dd06784a" datatype="html">
         <source>ltr</source>
         <target>rtl</target>
-          <context-group purpose="location">
+        <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-        <trans-unit id="Cancel" datatype="html">
+      <trans-unit id="PUBLISH" datatype="html">
+        <source>Publish</source>
+        <target>הפצה</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="NAME" datatype="html">
+        <source>Name</source>
+        <target>שם</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-students/classroom-students.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="STUDENT" datatype="html">
+        <source>student</source>
+        <target>סטודנט</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="EMAIL" datatype="html">
+        <source>email</source>
+        <target>דואר אלקטרוני</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="BUDGET" datatype="html">
+        <source>budget</source>
+        <target>תקציב</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-students/classroom-students.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CANCEL" datatype="html">
         <source>
         Cancel
       </source>
       <target>ביטול</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">75</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="Next" datatype="html">
+      <trans-unit id="NEXT" datatype="html">
         <source>
         Next
       </source>
       <target>הבא</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="Deploy" datatype="html">
+      <trans-unit id="DEPLOY" datatype="html">
         <source>
             Deploy
           </source>
           <target>פרוס (deploy)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
-         <trans-unit id="SelectAll" datatype="html">
-        <source>
-              Select All
-            </source>
-            <target>בחר הכל</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Name" datatype="html">
-        <source>Name</source>
-        <target>שם</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Student" datatype="html">
-        <source>student</source>
-        <target>סטודנט</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Email" datatype="html">
-        <source>email</source>
-        <target>דואר אלקטרוני</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Budget" datatype="html">
-        <source>budget</source>
-        <target>תקציב</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="HeaderMessagesTitle" datatype="html">
+      <trans-unit id="MESSAGES" datatype="html">
         <source>Messages</source>
         <target>הודעות</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="MainAccordionPreferencesTab" datatype="html">
-        <source>Preferences</source>
-        <target>העדפות</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="MainAccordionDashboardTab" datatype="html">
-        <source>Dashboard</source>
-        <target>דשבורד</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="MainAccordionClassroomTab" datatype="html">
-        <source>Classroom</source>
-        <target>כיתה</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
-       <trans-unit id="MainAccordionPublishButton" datatype="html">
-        <source>
-            Publish
-          </source>
-          <target>הפצה</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/publish-dialog/publish-dialog.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="MainAccordionPreviewButton" datatype="html">
-        <source>
-            Preview
-          </source>
-          <target>תצוגה מקדימה</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/app-header/app-header.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="PreferencesShellGeneralTab" datatype="html">
+      <trans-unit id="GENERAL" datatype="html">
         <source>
         General
       </source>
@@ -160,7 +122,7 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="PreferencesShellAddFileTab" datatype="html">
+      <trans-unit id="ADD_FILE" datatype="html">
         <source>
         Add File
       </source>
@@ -170,7 +132,7 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="PreferencesShellResourcesTab" datatype="html">
+      <trans-unit id="RESOURCES" datatype="html">
         <source>
         Recources
       </source>
@@ -180,44 +142,166 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="AddFileFormDescriptionLabel" datatype="html">
-        <source>
-      Description:
-      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
-    </source>
-    <target> תיאור:
-      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/></target>
+      <trans-unit id="DESCRIPTION" datatype="html">
+        <source>Description:</source>
+        <target> תיאור:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/preferences/preferences-add-file/preferences-add-file.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ADD_LINK" datatype="html">
+        <source>Add Link:</source>
+        <target> הוסף קישור:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/preferences/preferences-add-file/preferences-add-file.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PRODUCTS" datatype="html">
+        <source>Products</source>
+        <target>מוצרים</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/preferences/preferences-resources/preferences-resources.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="AddFileFormAddLinkLabel" datatype="html">
-        <source>
-      Add Link:
-      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
-    </source>
-    <target> הוסף קישור:
-      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/preferences/preferences-add-file/preferences-add-file.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="preferencesResourcesAccordionProductsTab" datatype="html">
-        <source>Products</source>
-        <target>מוצרים</target>
+      <trans-unit id="ESTIMATE" datatype="html">
+        <source>Estimate</source>
+        <target>הערכה</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/preferences/preferences-resources/preferences-resources.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="preferencesResourcesAccordionEstimateTab" datatype="html">
-        <source>Estimate</source>
-        <target>הערכה</target>
+      <trans-unit id="PREFERNCES" datatype="html">
+        <source>Preferences</source>
+        <target>העדפות</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/preferences/preferences-resources/preferences-resources.component.html</context>
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="DASHBOARD" datatype="html">
+        <source>Dashboard</source>
+        <target>דשבורד</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CLASROOM" datatype="html">
+        <source>Classroom</source>
+        <target>כיתה</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SUBMISSION" datatype="html">
+        <source>Submission</source>
+        <target>הגשה</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PREVIEW" datatype="html">
+        <source>
+          Preview
+        </source>
+        <target>תצוגה מקדימה</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/app-body/app-body.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ALL_STUDENTS" datatype="html">
+        <source>All Students</source>
+        <target>כל הסטודנטים</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-stats/classroom-stats.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TEACHING_ASSISTANTS" datatype="html">
+        <source>Teaching Assistants</source>
+        <target>עוזרי הוראה</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-stats/classroom-stats.component.html</context>
           <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PROJECT_GROUPS" datatype="html">
+        <source>Project Groups</source>
+        <target>קבוצות פרויקט</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-stats/classroom-stats.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SPENDING" datatype="html">
+        <source>Spendings</source>
+        <target>הוצאות</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-stats/classroom-stats.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ADD" datatype="html">
+        <source>Add</source>
+        <target>הוסף</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-tools/classroom-tools.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="REFRESH" datatype="html">
+        <source>Refresh</source>
+        <target>רענן</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-tools/classroom-tools.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TRASH" datatype="html">
+        <source>Trash</source>
+        <target>מחק</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-tools/classroom-tools.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CONSUMED" datatype="html">
+        <source>CONSUMED</source>
+        <target>נוצל</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-students/classroom-students.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="STATUS" datatype="html">
+        <source>STATUS</source>
+        <target>סטטוס</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/classroom/classroom-students/classroom-students.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SUBMISSIONS" datatype="html">
+        <source>Submissions</source>
+        <target>הגשות</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/submission/submission-shell/submission-shell.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="1d4e788b33df212fc82042506cd8f2fe9b5adfd8" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{item.name}}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{item.heName}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/submission/submission-shell/submission-shell.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
     </body>

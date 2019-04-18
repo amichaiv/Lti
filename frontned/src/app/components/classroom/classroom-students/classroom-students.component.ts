@@ -4,22 +4,23 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { ClassroomService } from "src/app/services/classroom.service";
 import { StudentsTableElement } from "../models/students-table.model";
 import { Observable } from 'rxjs';
+import { StudentAssignment } from 'src/app/models/student-assignment.model';
 @Component({
   selector: "app-classroom-students",
   templateUrl: "./classroom-students.component.html",
   styleUrls: ["./classroom-students.component.css"]
 })
 export class ClassroomStudentsComponent implements OnInit {
-  @Input() students: StudentsTableElement[];
+  @Input() students: StudentAssignment[];
   displayedColumns: string[] = ["select", "name", "budget", "consumed", "status"];
-  selectedAssignemnts: StudentsTableElement[] = [];
-  selection = new SelectionModel<StudentsTableElement>(
+  selectedAssignemnts: StudentAssignment[] = [];
+  selection = new SelectionModel<StudentAssignment>(
     true,
     this.selectedAssignemnts
   );
   dataSource;
   constructor(private service: ClassroomService) {
-    this.service.getStudents().subscribe(data => this.dataSource = new MatTableDataSource<StudentsTableElement>(data))
+    this.service.getStudents().subscribe(data => this.dataSource = new MatTableDataSource<StudentAssignment>(data))
   }
 
   ngOnInit() {
@@ -41,12 +42,12 @@ export class ClassroomStudentsComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: StudentsTableElement): string {
+  checkboxLabel(row?: StudentAssignment): string {
     if (!row) {
       return `${this.isAllSelected() ? "select" : "deselect"} all`;
     }
     return `${
       this.selection.isSelected(row) ? "deselect" : "select"
-      } row ${row.position + 1}`;
+      } row ${row.id + 1}`;
   }
 }

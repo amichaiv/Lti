@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { StudentsTableElement } from '../models/students-table.model';
 import { Observable } from 'rxjs';
+import { StudentAssignment } from 'src/app/models/student-assignment.model';
 
 @Component({
   selector: "app-classroom-shell",
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ["./classroom-shell.component.scss"]
 })
 export class ClassroomShellComponent implements OnInit {
-  students: StudentsTableElement[];
+  students: StudentAssignment[];
   allStudentsCount: number;
   noOfTeachingAssistants: number;
   noOfProjectGroups: number;

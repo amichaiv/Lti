@@ -1,17 +1,17 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <div class="form-field">
     <label>
-      <div class="form-filed-title" i18n="@@Description">Description:</div>
+      <div class="form-filed-title" i18n="@@DESCRIPTION">Description:</div>
       <input type="text" pInputText formControlName="description">
     </label>
   </div>
   <div class="form-field">
     <label>
-      <div class="form-filed-title" i18n="@@AddLink">Add Link:</div>
+      <div class="form-filed-title" i18n="@@ADD_LINK">Add Link:</div>
       <input type="url" pInputText formControlName="link">
     </label>
   </div>
   <div>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <button type="submit" mat-raised-button color="primary" I18N="@@SUBMIT">Submit</button>
   </div>
 </form>

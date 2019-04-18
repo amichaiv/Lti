@@ -11,5 +11,9 @@
   "Products": "מוצרים",
   "Estimate": "הערכה",
   "Preview": "תצוגה מקדימה",
-  "Publish": "הפצה"
+  "Publish": "הפצה",
+  "Done": "סיום",
+  "Pending": "ממתין",
+  "Any Status": "כל הסטטוסים",
+  "SEARCH_STUDENT": "חפש סטודנט"
 }

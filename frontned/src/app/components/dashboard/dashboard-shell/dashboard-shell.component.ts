@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-shell.component.css']
 })
 export class DashboardShellComponent implements OnInit {
-
+  totalSubmissions: number;
+  totalStudents: number;
+  submissionPercentage: number;
+  totalConsumed: number;
+  totalBudget: number;
+  consumedPercentage: number;
+  noOfActiveGroups: number;
+  noOfPendingGroups: number;
   constructor() { }
 
   ngOnInit() {
+    this.totalStudents = 35;
+    this.totalSubmissions = 12;
+    this.submissionPercentage = this.totalSubmissions / this.totalStudents;
+    this.totalConsumed = 300;
+    this.totalBudget = 1000;
+    this.consumedPercentage = this.totalConsumed / this.totalBudget;
+    this.noOfActiveGroups = 10;
+    this.noOfPendingGroups = 2;
   }
 
 }

@@ -1,22 +1,68 @@
 <div class="tab-container">
-  <div class="tab-main-content">
-    <div i18n="@@Submissions">Submissions</div>
+  <div class="tab-content">
+    <div i18n="@@SUBMISSIONS">Submissions</div>
     <div class="filter-row">
-      <div><input type="text" pInputText></div>
-      <div>
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Any Status
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="filterByStatus('done')" i18n="@@Done">Done</a>
-            <a class="dropdown-item" (click)="filterByStatus('pending')" i18n="@@Pending">Pending</a>
-            <a class="dropdown-item" (click)="filterByStatus('')" i18n="@@Any">Any</a>
-          </div>
-        </div>
+      <div class="filter"><input type="text" placeholder="{{'SEARCH_STUDENT' | translate}}"
+          (input)="searchStudents($event.target.value)" pInputText></div>
+      <div class="filter">
+        <p-dropdown [options]="statuses" [(ngModel)]="selectedStatusFilter" optionLabel="name"
+          (onChange)="filterByStatus($event)">
+          <ng-template let-item pTemplate="selectedItem">
+            <div>{{item.label | translate}}</div>
+          </ng-template>
+          <ng-template let-item pTemplate="item">
+            <div>{{item.label | translate}}</div>
+          </ng-template>
+
+
+
+        </p-dropdown>
       </div>
     </div>
+    <div>
+      <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+        <mat-spinner></mat-spinner>
+      </div>
+      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
 
+        <ng-container matColumnDef="student">
+          <mat-header-cell *matHeaderCellDef>Student</mat-header-cell>
+          <mat-cell *matCellDef="let student"><a href="#">{{student.email}}</a></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="group">
+          <mat-header-cell *matHeaderCellDef>Group</mat-header-cell>
+          <mat-cell class="description-cell" *matCellDef="let student">{{student.group}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="timeStamp">
+          <mat-header-cell *matHeaderCellDef>Timestamp</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">{{student.submissionTime}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="grade">
+          <mat-header-cell *matHeaderCellDef>Graded</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">{{student.grade}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="progressValue">
+          <mat-header-cell *matHeaderCellDef>% Done</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">{{student.progressValue}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="isCheating">
+          <mat-header-cell *matHeaderCellDef>Cheating</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">{{student.isCheating}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">{{student.status}}</mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+
+      </mat-table>
+    </div>
   </div>
+
 </div>

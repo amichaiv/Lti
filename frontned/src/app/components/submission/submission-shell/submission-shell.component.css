@@ -1,4 +1,14 @@
 .filter-row{
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    padding: 1em;
+}
+
+.tab-content{
+    background-color: white;
+    border-radius: 0.5em;
+    margin:1em;
+}
+.filter{
+    margin:0 1em;
 }

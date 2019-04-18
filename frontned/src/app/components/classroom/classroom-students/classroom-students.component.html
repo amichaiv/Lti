@@ -17,25 +17,25 @@
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef i18n="@@Name">NAME</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@NAME">NAME</mat-header-cell>
       <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="budget">
-      <mat-header-cell *matHeaderCellDef>BUDGET</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@BUDGET">BUDGET</mat-header-cell>
       <mat-cell *matCellDef="let element">{{
         element.budget | currency: "USD":true:"2.2-4"
       }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="consumed">
-      <mat-header-cell *matHeaderCellDef>CONSUMED</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@CONSUMED">CONSUMED</mat-header-cell>
       <mat-cell *matCellDef="let element">{{
         element.consumed | currency: "USD":true:"2.2-4"
       }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>STATUS</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n="@@STATUS">STATUS</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <mat-icon>{{ element.statusIcon }}</mat-icon>{{ element.status }}
       </mat-cell>

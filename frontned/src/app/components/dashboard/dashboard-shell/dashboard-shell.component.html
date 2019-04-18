@@ -1,3 +1,46 @@
-<p>
-  dashboard-shell works!
-</p>
+<div class="dashboard-container">
+  <div class="dashboard-row">
+    <div class="dashboard-item">
+      <div style="background-color: #cadcf8;width:20%">
+        <mat-icon>move_to_inbox</mat-icon>
+      </div>
+      <div style="margin:1em;width:100%;">
+        <div>Total submission</div>
+        <div>{{totalSubmissions}}/{{totalStudents}}</div>
+        <hr style="background-color: #cadcf8">
+        <div>{{submissionPercentage | percent }} from class</div>
+      </div>
+    </div>
+    <div class="dashboard-item">
+      <div style="background-color: #eac16f;width:20%">
+        <mat-icon>attach_money</mat-icon>
+      </div>
+      <div style="margin:1em;width:100%;">
+        <div>Total budget use</div>
+        <div>{{totalConsumed | currency: "USD"}}</div>
+        <hr style="background-color: #eac16f">
+        <div>{{consumedPercentage | percent }} from total budget</div>
+      </div>
+    </div>
+    <div class="dashboard-item">
+      <div style="background-color: #98e2c8;width:20%">
+        <mat-icon>people_outline</mat-icon>
+      </div>
+      <div style="margin:1em;width:100%;">
+        <div>Active groups</div>
+        <div>{{noOfActiveGroups}}</div>
+        <hr style="background-color: #98e2c8">
+        <div>{{noOfActiveGroups}} still pending</div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-row">
+    <div class="dashboard-item">
+      <div class="dashboard-item-title">Submission</div>
+      <hr>
+
+    </div>
+  </div>
+
+
+</div>

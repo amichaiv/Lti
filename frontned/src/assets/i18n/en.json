@@ -11,5 +11,9 @@
   "Products": "Products",
   "Estimate": "Estimate",
   "Preview": "Preview",
-  "Publish": "Publish"
+  "Publish": "Publish",
+  "Done": "Done",
+  "Pending": "Pending",
+  "Any Status": "Any Status",
+  "SEARCH_STUDENT": "Search Student"
 }

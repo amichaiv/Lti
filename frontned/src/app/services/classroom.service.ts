@@ -3,62 +3,26 @@ import { TableElemant } from "../components/preferences/models/assignment-table.
 import { StudentsTableElement } from "../components/classroom/models/students-table.model";
 import { of, Observable } from 'rxjs';
 import { debug } from 'util';
+import { StudentAssignment } from '../models/student-assignment.model';
+import { studentsAssignments } from '../models/mock-data';
+
 const allStudents: number = 152;
 const noOfTeachingAssistants: number = 0;
 const noOfProjectGroups: number = 0;
 const totalSpendings: number = 0;
-const students: StudentsTableElement[] = [
-  {
-    name: "Itay Yaffe",
-    position: 1,
-    budget: 150,
-    consumed: 30,
-    status: "Done",
-    statusIcon: ""
-  },
-  {
-    name: "Alex Pshul",
-    position: 2,
-    budget: 150,
-    consumed: 67.58,
-    status: "Done",
-    statusIcon: ""
-  },
 
-  {
-    name: "Amichai Vaknin",
-    position: 3,
-    budget: 150,
-    consumed: 38,
-    status: "Pending Acceptance",
-    statusIcon: ""
-  },
-  {
-    name: "Amir Segal",
-    position: 4,
-    budget: 150,
-    consumed: 0,
-    status: "Done",
-    statusIcon: ""
-  },
-  {
-    name: "Moti Hadash",
-    position: 5,
-    budget: 150,
-    consumed: 47,
-    status: "Pending Acceptance",
-    statusIcon: ""
-  }
-];
+
 
 @Injectable({
   providedIn: "root"
 })
 export class ClassroomService {
+  students: StudentAssignment[] = studentsAssignments;
   constructor() { }
 
   getAllStudentsCount(): Observable<number> {
-    return of(allStudents);
+    return of(this.students.length
+    );
   }
 
   getNoOfTeachingAssistants(): Observable<number> {
@@ -73,7 +37,7 @@ export class ClassroomService {
     return of(totalSpendings);
   }
 
-  getStudents(): Observable<StudentsTableElement[]> {
-    return of(students);
+  getStudents(): Observable<StudentAssignment[]> {
+    return of(this.students);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, LOCALE_ID, Inject } from "@angular/core";
 
 import { LocalStorageService } from "./services/local-storage.service";
+import { TranslateService } from './services/translate.service';
 
 @Component({
   selector: "app-root",
@@ -13,5 +14,9 @@ export class AppComponent {
     { code: "he", label: "עברית" }
   ];
 
-  constructor(@Inject(LOCALE_ID) protected localeId: string) {}
+  constructor(@Inject(LOCALE_ID) protected localeId: string, private translate: TranslateService) {
+    translate.use('en').then(() => {
+      console.log(translate.data);
+    });
+  }
 }
