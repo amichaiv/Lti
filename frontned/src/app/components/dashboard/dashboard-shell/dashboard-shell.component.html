@@ -35,12 +35,12 @@
     </div>
   </div>
   <div class="dashboard-row">
-    <div class="dashboard-item">
+    <div class="dashboard-submission-percentage">
       <div class="dashboard-item-title">Submission</div>
       <hr>
-
+      <app-doughnut-chart [totalSubmissions]="totalSubmissions" [totalStudents]="totalStudents"
+        [totalStarted]="totalStarted"></app-doughnut-chart>
     </div>
+
+
   </div>
-
-
-</div>

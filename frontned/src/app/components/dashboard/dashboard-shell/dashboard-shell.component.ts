@@ -14,7 +14,11 @@ export class DashboardShellComponent implements OnInit {
   consumedPercentage: number;
   noOfActiveGroups: number;
   noOfPendingGroups: number;
-  constructor() { }
+  totalStarted: number;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
     this.totalStudents = 35;
@@ -25,6 +29,8 @@ export class DashboardShellComponent implements OnInit {
     this.consumedPercentage = this.totalConsumed / this.totalBudget;
     this.noOfActiveGroups = 10;
     this.noOfPendingGroups = 2;
+    this.totalStarted = 4;
+
   }
 
 }

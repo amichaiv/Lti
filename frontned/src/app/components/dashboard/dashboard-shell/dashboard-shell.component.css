@@ -29,3 +29,13 @@
 .dashboard-item-title{
     margin:1em;
 }
+
+.dashboard-submission-percentage{
+    display: flex;
+    flex-direction:column;
+    margin:2em ;
+    flex-basis: 33%;
+    background-color: white;
+    border-radius: .5em;
+    overflow: auto;
+}

@@ -37,10 +37,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateService } from './services/translate.service';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { DropdownModule } from 'primeng/dropdown';
-import {
-  MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSortModule, MatTableModule
-} from "@angular/material";
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material";
+import { ChartModule } from 'primeng/chart';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,11 +61,14 @@ import {
     ClassroomToolsComponent,
     ClassroomStudentsComponent,
     SubmissionShellComponent,
-    TranslatePipe
+    TranslatePipe,
+    DoughnutChartComponent
   ],
   imports: [
     BrowserModule,
     MatTableModule,
+    NgxChartsModule,
+    ChartModule,
     MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
