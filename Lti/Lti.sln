@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LtiProvider", "LtiProvider\LtiProvider.csproj", "{AD5FF738-813C-4276-8FA5-62850A235D46}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LtiLibrary.AspNetCore", "..\..\..\Downloads\LtiLibrary-master\src\LtiLibrary.AspNetCore\LtiLibrary.AspNetCore.csproj", "{064E08C3-02C4-4439-BD85-42CFD32F48FF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LtiLibrary.NetCore", "..\..\..\Downloads\LtiLibrary-master\src\LtiLibrary.NetCore\LtiLibrary.NetCore.csproj", "{F97520DF-2FD0-431F-AD9A-7C6638486885}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{AD5FF738-813C-4276-8FA5-62850A235D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD5FF738-813C-4276-8FA5-62850A235D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD5FF738-813C-4276-8FA5-62850A235D46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{064E08C3-02C4-4439-BD85-42CFD32F48FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{064E08C3-02C4-4439-BD85-42CFD32F48FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{064E08C3-02C4-4439-BD85-42CFD32F48FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{064E08C3-02C4-4439-BD85-42CFD32F48FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F97520DF-2FD0-431F-AD9A-7C6638486885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F97520DF-2FD0-431F-AD9A-7C6638486885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F97520DF-2FD0-431F-AD9A-7C6638486885}.Release|Any CPU.ActiveCfg = Release|Any CPU

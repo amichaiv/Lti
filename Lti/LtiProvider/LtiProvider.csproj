@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\LtiLibrary-master\src\LtiLibrary.AspNetCore\LtiLibrary.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\..\Downloads\LtiLibrary-master\src\LtiLibrary.NetCore\LtiLibrary.NetCore.csproj" />
   </ItemGroup>
 

@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using LtiLibrary.NetCore.Common;
-using LtiLibrary.NetCore.Lti.v1;
-using LtiProvider.Models;
-using LtiProvider.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Specialized;
 using System.IO;
-using System.Web;
+using System.Linq;
+using LtiLibrary.NetCore.Lti.v1;
+using LtiProvider.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
-using LtiProvider.Extensions;
-using LtiProvider.OAuth;
-using OAuthConstants = LtiLibrary.NetCore.OAuth.OAuthConstants;
+using LtiLibrary.NetCore.Clients;
 
 namespace LtiProvider.Controllers
 {
@@ -22,28 +16,13 @@ namespace LtiProvider.Controllers
     [ApiController]
     public class OutcomesController : Controller
     {
-        #region Constants
-
         private const string SharedSecret = "secret";
-        private const string TempVarForGrade = "0.84";
-
-        #endregion
-
-        #region Private Members
-
-        private static readonly XmlSerializer ImsxRequestSerializer;
-        private static readonly XmlSerializer ImsxResponseSerializer;
-
         private readonly IRequestData _requestData;
-
-        #endregion
-
-        #region Constructors
+        private readonly Random _random = new Random();
+        private static readonly XmlSerializer ImsxResponseSerializer;
 
         static OutcomesController()
         {
-            // Create two serializers: one for requests and one for responses.
-            ImsxRequestSerializer = new XmlSerializer(typeof(imsx_POXEnvelopeType));
             ImsxResponseSerializer = new XmlSerializer(typeof(imsx_POXEnvelopeType), null, null,
                 new XmlRootAttribute("imsx_POXEnvelopeResponse"),
                 "http://www.imsglobal.org/services/ltiv1p1/xsd/imsoms_v1p0");
@@ -54,149 +33,69 @@ namespace LtiProvider.Controllers
             _requestData = requestData;
         }
 
-        #endregion
-
-        #region Public Methods
-
         [HttpPost]
         public IActionResult Connect()
         {
             _requestData.Clear();
-            SaveRequestData(Request);
+            _requestData.Add(Request);
             return View("Outcomes");
         }
 
-        public IActionResult PostOutcome()
+        public async Task<IActionResult> ReplaceResultAsync()
         {
             var data = _requestData.Get();
-            var imsxEnvelope = new imsx_POXEnvelopeType
+            using (var client = new HttpClient())
             {
-                imsx_POXHeader = new imsx_POXHeaderType { Item = new imsx_RequestHeaderInfoType() },
-                imsx_POXBody = new imsx_POXBodyType { Item = new replaceResultRequest() }
-            };
-
-            var imsxHeader = (imsx_RequestHeaderInfoType)imsxEnvelope.imsx_POXHeader.Item;
-            imsxHeader.imsx_version = imsx_GWSVersionValueType.V10;
-            imsxHeader.imsx_messageIdentifier = Guid.NewGuid().ToString();
-
-            var imsxBody = (replaceResultRequest)imsxEnvelope.imsx_POXBody.Item;
-            imsxBody.resultRecord = new ResultRecordType
-            {
-                sourcedGUID = new SourcedGUIDType { sourcedId = data.ResultSourcedId },
-                result = new ResultType
+                var newGrade = _random.NextDouble();
+                var clientResponse = await Outcomes1Client.ReplaceResultAsync(client, data.OutcomeServiceUrl,
+                    data.OAuthConsumerKey, SharedSecret,
+                    data.ResultSourcedId, newGrade);
+                var response = clientResponse.HttpResponse;
+                var responseArray = response.Split(Environment.NewLine);
+                var imsxElement = responseArray[responseArray.Length - 1];
+                if (GetReplaceResponseResult(imsxElement))
                 {
-                    resultScore = new TextType { language = LtiConstants.ScoreLanguage, textString = TempVarForGrade }
+                    var outcomeClientResponse = await Outcomes1Client.ReadResultAsync(client, data.OutcomeServiceUrl,
+                        data.OAuthConsumerKey, SharedSecret, data.ResultSourcedId);
+                    var outcomeResponse = outcomeClientResponse.HttpResponse;
+                    var outcomeResponseArray = outcomeResponse.Split(Environment.NewLine);
+                    var imsxOutcomeElement = outcomeResponseArray[responseArray.Length - 1];
+                    var result = GetReadResponseResult(imsxOutcomeElement);
+                    return View("Success", result.ToString("N"));
                 }
-            };
-            // The LTI 1.1 specification states in 6.1.1. that the score in replaceResult should
-            // always be formatted using “en” formatting
-            // (http://www.imsglobal.org/LTI/v1p1p1/ltiIMGv1p1p1.html#_Toc330273034).
 
-            try
-            {
-                var webRequest = CreateLtiOutcomesRequest(
-                    imsxEnvelope,
-                    data.OutcomeServiceUrl,
-                    data.OAuthConsumerKey);
-                var webResponse = webRequest.GetResponse() as HttpWebResponse;
-                if (ParsePostResultResponse(webResponse)) return View("Success");
+                return View("Outcomes");
             }
-            catch (Exception)
-            {
-            }
-            return View("Outcomes");
         }
 
-        #endregion
-
-        #region Private Methods
-
-        private void SaveRequestData(HttpRequest request)
+        private bool GetReplaceResponseResult(string imsxElement)
         {
-            var form = request.Form;
-            form.TryGetValue("lis_outcome_service_url", out var outcomeServiceUrl);
-            form.TryGetValue("lis_result_sourcedid", out var lisResultSourceDid);
-            form.TryGetValue("oauth_consumer_key", out var oauthConsumerKey);
-            form.TryGetValue("oauth_nonce", out var oauthNonce);
-            form.TryGetValue("oauth_signature_method", out var oauthSignatureMethod);
-            form.TryGetValue("oauth_timestamp", out var oauthTimestamp);
-            long.TryParse(oauthTimestamp, out var timestamp);
-            form.TryGetValue("oauth_version", out var oauthVersion);
-            var ltiRequestData = new LtiRequestData
+            using (var textReader = new StringReader(imsxElement))
             {
-                OutcomeServiceUrl = outcomeServiceUrl,
-                ResultSourcedId = lisResultSourceDid,
-                OAuthConsumerKey = oauthConsumerKey,
-                OAuthNonce = oauthNonce,
-                OAuthSignatureMethod = oauthSignatureMethod,
-                OAuthTimestamp = timestamp,
-                OAuthVersion = oauthVersion
-            };
-            _requestData.Add(ltiRequestData);
+                var imsxEnvelope = ImsxResponseSerializer.Deserialize(textReader) as imsx_POXEnvelopeType;
+                var imsxHeader = imsxEnvelope?.imsx_POXHeader.Item as imsx_ResponseHeaderInfoType;
+                if (imsxHeader == null)
+                {
+                    return false;
+                }
+                var imsxStatus = imsxHeader.imsx_statusInfo.imsx_codeMajor;
+                var imsxDescription = imsxHeader.imsx_statusInfo.imsx_description;
+                Console.WriteLine($"Replace Result Description: {imsxDescription}");
+                return imsxStatus == imsx_CodeMajorType.success;
+            }
         }
 
-        private static HttpWebRequest CreateLtiOutcomesRequest(imsx_POXEnvelopeType imsxEnvelope, string url, string consumerKey)
+        private double GetReadResponseResult(string imsxElement)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(url);
-            webRequest.Method = "POST";
-            webRequest.ContentType = "application/xml";
-
-            var parameters = new NameValueCollection();
-            parameters.AddParameter(OAuthConstants.ConsumerKeyParameter, consumerKey);
-            parameters.AddParameter(OAuthConstants.NonceParameter, Guid.NewGuid().ToString());
-            parameters.AddParameter(OAuthConstants.SignatureMethodParameter, OAuthConstants.SignatureMethodHmacSha1);
-            parameters.AddParameter(OAuthConstants.VersionParameter, OAuthConstants.Version10);
-
-            // Calculate the timestamp
-            var ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            var timestamp = Convert.ToInt64(ts.TotalSeconds);
-            parameters.AddParameter(OAuthConstants.TimestampParameter, timestamp);
-
-            // Calculate the body hash
-            using (var ms = new MemoryStream())
-            using (var sha1 = new SHA1CryptoServiceProvider())
+            var xElement = XElement.Parse(imsxElement);
+            XNamespace ad = "http://www.imsglobal.org/services/ltiv1p1/xsd/imsoms_v1p0";
+            var scoreElement = xElement.Descendants(ad + "textString").FirstOrDefault();
+            if (scoreElement == null)
             {
-                ImsxRequestSerializer.Serialize(ms, imsxEnvelope);
-                ms.Position = 0;
-                ms.CopyTo(webRequest.GetRequestStream());
-
-                var hash = sha1.ComputeHash(ms.ToArray());
-                var hash64 = Convert.ToBase64String(hash);
-                parameters.AddParameter(OAuthConstants.BodyHashParameter, hash64);
+                return -1;
             }
 
-            // Calculate the signature
-            var signature = OAuthUtility.GenerateSignature(webRequest.Method, webRequest.RequestUri, parameters,
-                SharedSecret);
-            parameters.AddParameter(OAuthConstants.SignatureParameter, signature);
-
-            // Build the Authorization header
-            var authorization = new StringBuilder(OAuthConstants.AuthScheme).Append(" ");
-            foreach (var key in parameters.AllKeys)
-            {
-                authorization.AppendFormat("{0}=\"{1}\",", key, HttpUtility.UrlEncode(parameters[key]));
-            }
-            webRequest.Headers["Authorization"] = authorization.ToString(0, authorization.Length - 1);
-
-            return webRequest;
+            return double.Parse(scoreElement.Value) * 100;
         }
-
-        private static bool ParsePostResultResponse(HttpWebResponse webResponse)
-        {
-            var stream = webResponse?.GetResponseStream();
-            if (stream == null) return false;
-
-            var imsxEnvelope = ImsxResponseSerializer.Deserialize(stream) as imsx_POXEnvelopeType;
-
-            var imsxHeader = imsxEnvelope?.imsx_POXHeader.Item as imsx_ResponseHeaderInfoType;
-            if (imsxHeader == null) return false;
-
-            var imsxStatus = imsxHeader.imsx_statusInfo.imsx_codeMajor;
-            var imsxDescription = imsxHeader.imsx_statusInfo.imsx_description;
-
-            return imsxStatus == imsx_CodeMajorType.success;
-        }
-
-        #endregion
     }
 }

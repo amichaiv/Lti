@@ -7,7 +7,7 @@ using LtiLibrary.NetCore.Extensions;
 using LtiProvider.Extensions;
 using OAuthConstants = LtiLibrary.NetCore.OAuth.OAuthConstants;
 
-namespace LtiProvider.OAuth
+namespace LtiProvider.Services
 {
     public static class OAuthUtility
     {
