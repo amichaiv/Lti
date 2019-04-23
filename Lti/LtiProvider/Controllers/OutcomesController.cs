@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using LtiLibrary.NetCore.Common;
 using LtiLibrary.NetCore.Lti.v1;
 using LtiProvider.Models;
@@ -22,48 +20,50 @@ namespace LtiProvider.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ConnectionController : Controller
+    public class OutcomesController : Controller
     {
+        #region Constants
+
         private const string SharedSecret = "secret";
         private const string TempVarForGrade = "0.84";
+
+        #endregion
+
+        #region Private Members
 
         private static readonly XmlSerializer ImsxRequestSerializer;
         private static readonly XmlSerializer ImsxResponseSerializer;
 
         private readonly IRequestData _requestData;
 
-        /// These OAuth parameters are required in OAuth Authorization Headers
-        protected static readonly string[] RequiredOauthAuthorizationHeaderParameters =
-        {
-            OAuthConstants.BodyHashParameter,
-            OAuthConstants.ConsumerKeyParameter,
-            OAuthConstants.NonceParameter,
-            OAuthConstants.SignatureParameter,
-            OAuthConstants.SignatureMethodParameter,
-            OAuthConstants.TimestampParameter,
-            OAuthConstants.VersionParameter,
-            OAuthConstants.RealmParameter,
-        };
+        #endregion
 
-        static ConnectionController()
+        #region Constructors
+
+        static OutcomesController()
         {
             // Create two serializers: one for requests and one for responses.
             ImsxRequestSerializer = new XmlSerializer(typeof(imsx_POXEnvelopeType));
-            ImsxResponseSerializer = new XmlSerializer(typeof(imsx_POXEnvelopeType), null, null, new XmlRootAttribute("imsx_POXEnvelopeResponse"),
+            ImsxResponseSerializer = new XmlSerializer(typeof(imsx_POXEnvelopeType), null, null,
+                new XmlRootAttribute("imsx_POXEnvelopeResponse"),
                 "http://www.imsglobal.org/services/ltiv1p1/xsd/imsoms_v1p0");
         }
 
-        public ConnectionController(IRequestData requestData)
+        public OutcomesController(IRequestData requestData)
         {
             _requestData = requestData;
         }
+
+        #endregion
+
+        #region Public Methods
 
         [HttpPost]
         public IActionResult Connect()
         {
             _requestData.Clear();
             SaveRequestData(Request);
-            return View("ConnectView");
+            return View("Outcomes");
         }
 
         public IActionResult PostOutcome()
@@ -99,13 +99,17 @@ namespace LtiProvider.Controllers
                     data.OutcomeServiceUrl,
                     data.OAuthConsumerKey);
                 var webResponse = webRequest.GetResponse() as HttpWebResponse;
-                if (ParsePostResultResponse(webResponse)) return View("SuccessView");
+                if (ParsePostResultResponse(webResponse)) return View("Success");
             }
             catch (Exception)
             {
             }
-            return View("ConnectView");
+            return View("Outcomes");
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void SaveRequestData(HttpRequest request)
         {
@@ -192,5 +196,7 @@ namespace LtiProvider.Controllers
 
             return imsxStatus == imsx_CodeMajorType.success;
         }
+
+        #endregion
     }
 }

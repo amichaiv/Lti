@@ -1,0 +1,35 @@
+﻿@model LtiProvider.ViewModel.MembershipViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Course Title: @Model.ContextTitle</h2>
+<h3>Resource Title: @Model.ResourceLinkTitle</h3>
+
+<table>
+    <tr>
+        <td>Role</td>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    <tr>
+        <td>____</td>
+        <td>__</td>
+        <td>____</td>
+        <td>_____</td>
+    </tr>
+    @foreach (var membership in Model.MembershipSubject.membership)
+    {
+        <tr>
+            @foreach (var role in membership.role)
+            {
+                <td>@role</td>
+            }
+            <td>@membership.member.userId</td>
+            <td>@membership.member.name</td>
+            <td>@membership.member.email</td>
+        </tr>
+    }
+</table>
