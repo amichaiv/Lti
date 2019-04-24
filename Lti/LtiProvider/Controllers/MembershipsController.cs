@@ -14,7 +14,6 @@ namespace LtiProvider.Controllers
     [ApiController]
     public class MembershipsController : Controller
     {
-        private const string SharedSecret = "secret";
         private readonly IRequestData _requestData;
 
         public MembershipsController(IRequestData requestData)
@@ -34,10 +33,10 @@ namespace LtiProvider.Controllers
         {
             var data = _requestData.Get();
             using (var client = new HttpClient())
-            {
+            { 
                 var clientResponse =
                     await MembershipClient.GetMembershipAsync(client, data.CustomContextMembershipsUrl,
-                        data.OAuthConsumerKey, SharedSecret, data.ResourceLinkId);
+                        data.OAuthConsumerKey, _requestData.SharedSecret, data.ResourceLinkId);
                 var membershipViewModel = GetMembershipViewModel(data, clientResponse.HttpResponse);
                 return View(membershipViewModel);
             }

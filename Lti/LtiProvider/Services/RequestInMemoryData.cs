@@ -11,6 +11,8 @@ namespace LtiProvider.Services
     {
         private readonly RequestDbContext _requestDbContext;
 
+        public string SharedSecret { get; } = "secret";
+
         public RequestInMemoryData(RequestDbContext requestDbContext)
         {
             _requestDbContext = requestDbContext;
@@ -56,6 +58,7 @@ namespace LtiProvider.Services
         }
 
         public LtiRequestData Get() => _requestDbContext.Request.FirstOrDefault();
+
         public void Clear()
         {
             foreach (var ltiRequestData in _requestDbContext.Request)

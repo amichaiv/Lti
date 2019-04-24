@@ -16,9 +16,7 @@ namespace LtiProvider.Controllers
     [ApiController]
     public class OutcomesController : Controller
     {
-        private const string SharedSecret = "secret";
         private readonly IRequestData _requestData;
-        private readonly Random _random = new Random();
         private static readonly XmlSerializer ImsxResponseSerializer;
 
         static OutcomesController()
@@ -46,9 +44,9 @@ namespace LtiProvider.Controllers
             var data = _requestData.Get();
             using (var client = new HttpClient())
             {
-                var newGrade = _random.NextDouble();
+                var newGrade = new Random().NextDouble();
                 var clientResponse = await Outcomes1Client.ReplaceResultAsync(client, data.OutcomeServiceUrl,
-                    data.OAuthConsumerKey, SharedSecret,
+                    data.OAuthConsumerKey, _requestData.SharedSecret,
                     data.ResultSourcedId, newGrade);
                 var response = clientResponse.HttpResponse;
                 var responseArray = response.Split(Environment.NewLine);
@@ -56,7 +54,7 @@ namespace LtiProvider.Controllers
                 if (GetReplaceResponseResult(imsxElement))
                 {
                     var outcomeClientResponse = await Outcomes1Client.ReadResultAsync(client, data.OutcomeServiceUrl,
-                        data.OAuthConsumerKey, SharedSecret, data.ResultSourcedId);
+                        data.OAuthConsumerKey, _requestData.SharedSecret, data.ResultSourcedId);
                     var outcomeResponse = outcomeClientResponse.HttpResponse;
                     var outcomeResponseArray = outcomeResponse.Split(Environment.NewLine);
                     var imsxOutcomeElement = outcomeResponseArray[responseArray.Length - 1];
