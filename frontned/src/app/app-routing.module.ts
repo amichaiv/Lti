@@ -8,7 +8,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { AppGuard } from "./app.guard";
 import { AppBodyComponent } from "./components/app-body/app-body.component";
 const routes: Routes = [
-  { path: "", component: AppBodyComponent, canActivate: [AppGuard] },
+  { path: "en", component: AppBodyComponent, canActivate: [AppGuard] },
+  { path: "", component: AppBodyComponent },
   { path: "Preferences", component: PreferencesShellComponent },
   { path: "Dashboard", component: DashboardShellComponent },
   { path: "Classroom", component: ClassroomShellComponent },
@@ -20,4 +21,4 @@ const routes: Routes = [
 
   imports: [CommonModule, RouterModule.forRoot(routes)]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

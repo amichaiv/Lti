@@ -9,7 +9,7 @@ import {
 import { Observable } from "rxjs";
 import { CanActivate } from "@angular/router";
 import { Store } from "@ngxs/store";
-import { SetCourseName, SetUserName } from "./store/actions/app.actions";
+
 import { LocalStorageService } from "./services/local-storage.service";
 import { TranslateService } from './services/translate.service';
 
@@ -19,31 +19,20 @@ import { TranslateService } from './services/translate.service';
 export class AppGuard implements CanActivate {
   coursename: string;
   username: string;
-  constructor(
-    private store: Store,
-    private localStorageService: LocalStorageService,
-    private router: Router,
-    private translate: TranslateService
-  ) { }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (route.queryParamMap.get("coursename")) {
+  constructor(private localStorageService: LocalStorageService, private router: Router, private translate: TranslateService) { }
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    if (route.queryParamMap.get("assignmentGuid")) {
       //when we go to production change this to paramMap
-      this.translate.use(route.queryParamMap.get("lang")).then(() => console.log(this.translate.data))
+      this.translate.use("en");
       this.localStorageService.setItem(
-        "coursename",
-        route.queryParamMap.get("coursename")
+        "assignmentGuid",
+        route.queryParamMap.get("assignmentGuid")
       );
       this.localStorageService.setItem(
-        "lang",
-        route.queryParamMap.get("lang")
+        "userId",
+        route.queryParamMap.get("userId")
       );
-      this.localStorageService.setItem(
-        "username",
-        route.queryParamMap.get("username")
-      );
+
       this.router.navigateByUrl("");
     }
     return true;

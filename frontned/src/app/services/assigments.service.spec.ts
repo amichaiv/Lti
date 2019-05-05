@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PreferencesService } from './preferences.service';
+import { AssigmentsService } from './assigments.service';
 
-describe('PreferencesService', () => {
+describe('AssigmentsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PreferencesService = TestBed.get(PreferencesService);
+    const service: AssigmentsService = TestBed.get(AssigmentsService);
     expect(service).toBeTruthy();
   });
 });

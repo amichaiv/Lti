@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AppHeaderComponent } from "./components/app-header/app-header.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { AppState } from "./store/state/app.state";
+
 import { NgxsModule } from "@ngxs/store";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
@@ -41,7 +41,10 @@ import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortMo
 import { ChartModule } from 'primeng/chart';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
+import { AppState } from './store/store-index';
+import { AssignmentsService } from './services/assigments.service';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { PreferencesResourcesProductsComponent } from './components/preferences/preferences-resources-products/preferences-resources-products.component';
 
 
 @NgModule({
@@ -62,10 +65,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ClassroomStudentsComponent,
     SubmissionShellComponent,
     TranslatePipe,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    PreferencesResourcesProductsComponent
   ],
   imports: [
     BrowserModule,
+    RoundProgressModule,
     MatTableModule,
     NgxChartsModule,
     ChartModule,
@@ -88,13 +93,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AccordionModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxsModule.forRoot([AppState]),
+    NgxsModule.forRoot(AppState),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+
     NgxsLoggerPluginModule.forRoot(),
     BrowserAnimationsModule,
     MatTabsModule
   ],
-  providers: [TranslateService],
+  providers: [TranslateService, AssignmentsService],
   entryComponents: [PublishDialogComponent],
   bootstrap: [AppComponent]
 })

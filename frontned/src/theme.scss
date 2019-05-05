@@ -2,6 +2,6 @@
 
 $my-theme-primary: mat-palette($mat-blue);
 $my-theme-accent: mat-palette($mat-grey);
-$my-theme-warn: mat-palette($mat-red);
+$my-theme-warn: mat-palette($mat-green);
 
 $my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);

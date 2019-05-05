@@ -1,13 +1,15 @@
-<div>
-  <div [ngClass]="'header'">
-    <div *ngIf="(courseName$ | async) as courseName">
-      <span class="course-name-title">{{ courseName }}</span>
-      <span class="header-item">{{ courseName }}
-        <span i18n="@@MESSAGES">Messages</span></span>
-      <i class="material-icons">
-        account_circle
-      </i>
+<div class="header">
+  <div style="display: inherit;align-items: center">
+    <div style="font-size: 5em">{{courseName$ | async}}</div>
+    <div style="margin:0 1em;font-size: 2em">{{courseName$ | async}} Messages</div>
+  </div>
+  <div style="display: inherit;align-items: center">
+    <div style="margin:0 1em"><button mat-raised-button color="primary">education hub</button></div>
+    <div style="margin:0 1em">
+      <mat-icon>notifications</mat-icon>
     </div>
-    <div *ngIf="(username$ | async) as username">{{ username }}</div>
+    <div style="margin:0 1em">
+      <mat-icon>account_circle</mat-icon>
+    </div>
   </div>
 </div>

@@ -12,3 +12,37 @@
 .filter{
     margin:0 1em;
 }
+
+.progress-percentage-wrapper {
+    position: relative;
+
+}
+.progress-percentage {
+    position: absolute;
+    color: black;
+    width: 100%;
+    text-align: center;
+     top: 25%;
+}
+
+.Flagged{
+    background-color:#3de58e;
+}
+
+.Submission{
+    background-color: #4786ed;
+}
+
+.OnGoing{
+    color: #4786ed;
+    border:.1em #4786ed solid;
+    background-color: white
+}
+
+.Pending{
+    background-color:#efe053;
+}
+button{
+    width:8em;
+    color:white;
+}

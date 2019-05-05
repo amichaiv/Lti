@@ -9,5 +9,5 @@
   <app-classroom-tools></app-classroom-tools>
   <app-classroom-stats [allStudentsCount]="allStudentsCount" [noOfTeachingAssistants]="noOfTeachingAssistants"
     [noOfProjectGroups]="noOfProjectGroups" [totalSpendings]="totalSpendings"></app-classroom-stats>
-  <app-classroom-students [students]="students"></app-classroom-students>
+  <app-classroom-students [assignments]="assignments$ | async"></app-classroom-students>
 </div>

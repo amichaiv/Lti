@@ -25,7 +25,7 @@
       </div>
       <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
 
-        <ng-container matColumnDef="student">
+        <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef>Student</mat-header-cell>
           <mat-cell *matCellDef="let student"><a href="#">{{student.email}}</a></mat-cell>
         </ng-container>
@@ -35,7 +35,7 @@
           <mat-cell class="description-cell" *matCellDef="let student">{{student.group}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="timeStamp">
+        <ng-container matColumnDef="submissionTime">
           <mat-header-cell *matHeaderCellDef>Timestamp</mat-header-cell>
           <mat-cell class="duration-cell" *matCellDef="let student">{{student.submissionTime}}</mat-cell>
         </ng-container>
@@ -45,15 +45,30 @@
         </ng-container>
         <ng-container matColumnDef="progressValue">
           <mat-header-cell *matHeaderCellDef>% Done</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let student">{{student.progressValue}}</mat-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">
+            <div class="progress-percentage-wrapper">
+              <div class="progress-percentage ng-cloak">{{student.progressValue}}</div>
+              <round-progress [max]="100" [current]="student.progressValue" [radius]="20" [stroke]="3" [rounded]="false"
+                color="#4786ed" [clockwise]="true" [responsive]="false" [duration]="1000"></round-progress>
+            </div>
+
+          </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="isCheating">
+        <ng-container matColumnDef="isCheated">
           <mat-header-cell *matHeaderCellDef>Cheating</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let student">{{student.isCheating}}</mat-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">
+            <mat-icon *ngIf="!student.isCheated;else cheated" style="color: lawngreen">check_circle</mat-icon>
+            <ng-template #cheated>
+              <mat-icon style="color: red">error</mat-icon>
+            </ng-template>
+          </mat-cell>
         </ng-container>
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let student">{{student.status}}</mat-cell>
+          <mat-cell class="duration-cell" *matCellDef="let student">
+            <button mat-button [ngClass]="student.status">{{student.status}}
+            </button>
+          </mat-cell>
         </ng-container>
 
 

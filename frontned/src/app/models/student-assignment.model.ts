@@ -1,4 +1,4 @@
-export interface StudentAssignment {
+export interface Assignment {
     id: number,
     name: string,
     email: string,

@@ -1,7 +1,8 @@
-import { Component, LOCALE_ID, Inject } from "@angular/core";
+import { Component, LOCALE_ID, Inject, OnDestroy } from "@angular/core";
 
 import { LocalStorageService } from "./services/local-storage.service";
 import { TranslateService } from './services/translate.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: "app-root",
@@ -9,6 +10,7 @@ import { TranslateService } from './services/translate.service';
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+
   languageList = [
     { code: "en", label: "English" },
     { code: "he", label: "עברית" }

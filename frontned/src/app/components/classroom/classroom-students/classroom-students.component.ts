@@ -1,30 +1,37 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { SelectionModel } from "@angular/cdk/collections";
 import { ClassroomService } from "src/app/services/classroom.service";
 import { StudentsTableElement } from "../models/students-table.model";
 import { Observable } from 'rxjs';
-import { StudentAssignment } from 'src/app/models/student-assignment.model';
+import { Assignment } from 'src/app/models/student-assignment.model';
+import { Store, Select } from '@ngxs/store';
+import { AssignmentsStateSelectors } from 'src/app/store/assignments/assignments.selectors';
+import { AssignmentsService } from 'src/app/services/assigments.service';
+
 @Component({
   selector: "app-classroom-students",
   templateUrl: "./classroom-students.component.html",
   styleUrls: ["./classroom-students.component.css"]
 })
 export class ClassroomStudentsComponent implements OnInit {
-  @Input() students: StudentAssignment[];
+  @Input() assignments: Assignment[];
   displayedColumns: string[] = ["select", "name", "budget", "consumed", "status"];
-  selectedAssignemnts: StudentAssignment[] = [];
-  selection = new SelectionModel<StudentAssignment>(
+  selectedAssignemnts: Assignment[] = [];
+
+  selection = new SelectionModel<Assignment>(
     true,
     this.selectedAssignemnts
   );
   dataSource;
-  constructor(private service: ClassroomService) {
-    this.service.getStudents().subscribe(data => this.dataSource = new MatTableDataSource<StudentAssignment>(data))
+  constructor(private service: AssignmentsService, private store: Store) {
+
+
   }
 
   ngOnInit() {
 
+    this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -42,7 +49,7 @@ export class ClassroomStudentsComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: StudentAssignment): string {
+  checkboxLabel(row?: Assignment): string {
     if (!row) {
       return `${this.isAllSelected() ? "select" : "deselect"} all`;
     }

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { dropdownElement } from '../models/dropdownElement.model';
-import { SelectItem } from 'primeng/api';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { StudentsAssignmentsDataSource } from '../models/students-assignments-data-source';
-import { ClassroomService } from 'src/app/services/classroom.service';
+import { Component, OnInit, Input } from '@angular/core';
+
+
+import { Assignment } from 'src/app/models/student-assignment.model';
+import { MatTableDataSource } from '@angular/material';
 interface wordItem {
   name: string,
   code: string,
@@ -15,26 +14,26 @@ interface wordItem {
   styleUrls: ['./submission-shell.component.css']
 })
 export class SubmissionShellComponent implements OnInit {
+  @Input() assignments: Assignment[];
   nameFilter: string = "";
   selectedStatusFilter: string;
   statuses: wordItem[];
-  dataSource: StudentsAssignmentsDataSource;
-  displayedColumns = ["student", "group", "timeStamp", "status", "grade", "progressValue", "isCheating"];
-  constructor(private localStorageService: LocalStorageService, private classroomService: ClassroomService) {
+  dataSource = new MatTableDataSource<Assignment>(this.assignments);
+  displayedColumns = ["name", "group", "submissionTime", "status", "grade", "progressValue", "isCheated"];
+  constructor() {
     this.statuses = [{ name: "Any Status", code: "" }, { name: "Done", code: "Submission" }, { name: "Pending", code: "Pending" }];
   }
 
   ngOnInit() {
-    this.dataSource = new StudentsAssignmentsDataSource(this.classroomService);
-    this.dataSource.loadStudentsAssignments();
+    this.dataSource = new MatTableDataSource<Assignment>(this.assignments);
+
     // this.statuses.forEach(item => item.name = this.localStorageService.getItem("lang") === "en" ? item.enName : item.heName)
   }
   filterByStatus(event) {
-    this.dataSource.loadStudentsAssignments(this.nameFilter, event.value.code);
+    this.dataSource.data.filter(item => item.status === event.value.code)
   }
   searchStudents(value: string) {
-    this.nameFilter = value;
-    this.dataSource.loadStudentsAssignments(value);
+    this.dataSource.filter = value.trim().toLowerCase();
   }
   onRowClicked(row) {
     console.log('Row clicked: ', row);

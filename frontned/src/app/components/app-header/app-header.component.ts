@@ -1,13 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Select, Store } from "@ngxs/store";
-import { AppStateModel, AppState } from "src/app/store/state/app.state";
+
 import { Observable } from "rxjs";
-import { MatDialogRef, MatDialog } from "@angular/material";
-import { PublishDialogComponent } from "../publish-dialog/publish-dialog.component";
+
 import { LocalStorageService } from "src/app/services/local-storage.service";
-import { SetCourseName, SetUserName } from "src/app/store/actions/app.actions";
-import { Route } from "@angular/compiler/src/core";
+
+
 import { Router } from "@angular/router";
+
+import { AppStartStateSelectors } from 'src/app/store/app-start/app-start.selectors';
+import { GetCourseName, GetUsername, GetAssignmentInitialData } from 'src/app/store/app-start/app-start.actions';
 
 @Component({
   selector: "app-app-header",
@@ -19,22 +21,22 @@ export class AppHeaderComponent implements OnInit {
     private store: Store,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {}
+  ) { }
   tabs: string[] = ["Preferences", "Dashboard", "Classroom"];
 
-  @Select(AppState.getCourseName) courseName$: Observable<string>;
-  @Select(AppState.getUsername) username$: Observable<string>;
+  @Select(AppStartStateSelectors.getCourseName) courseName$: Observable<string>;
+  @Select(AppStartStateSelectors.getUsername) username$: Observable<string>;
 
   ngOnInit() {
     this.store.dispatch(
-      new SetCourseName(this.localStorageService.getItem("coursename"))
+      new GetCourseName(this.localStorageService.getItem("coursename"))
     );
     this.store.dispatch(
-      new SetUserName(this.localStorageService.getItem("username"))
+      new GetUsername(this.localStorageService.getItem("username"))
     );
+    this.store.dispatch(new GetAssignmentInitialData())
   }
 
-  onTabChanges(e) {
-    this.router.navigate(["/" + this.tabs[e.index]]);
-  }
+
+
 }

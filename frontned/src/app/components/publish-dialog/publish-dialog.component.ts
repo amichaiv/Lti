@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
-import { MenuItem } from "primeng/api";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+
+import { MatTableDataSource } from "@angular/material";
 
 import { SelectionModel } from "@angular/cdk/collections";
 import { TableElemant } from "../preferences/models/assignment-table.model";
-import { PreferencesService } from "src/app/services/preferences.service";
+import { Assignment } from 'src/app/models/student-assignment.model';
 
 @Component({
   selector: "app-publish-dialog",
@@ -13,22 +13,20 @@ import { PreferencesService } from "src/app/services/preferences.service";
   styleUrls: ["./publish-dialog.component.scss"]
 })
 export class PublishDialogComponent implements OnInit {
+
+
   isAssignmentsSelected: boolean;
-  displayedColumns: string[] = ["select", "name", "student", "email", "budget"];
-  selectedAssignemnts: TableElemant[] = [];
-  selection = new SelectionModel<TableElemant>(true, this.selectedAssignemnts);
-  dataSource = new MatTableDataSource<TableElemant>(
-    this.service.getAssignments()
+  displayedColumns: string[] = ["select", "name", "email", "budget"];
+  selectedAssignemnts: Assignment[] = [];
+  selection = new SelectionModel<Assignment>(true, this.selectedAssignemnts);
+  dataSource = new MatTableDataSource<Assignment>(
+    this.data.assignments
   );
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(
-    public dialogRef: MatDialogRef<PublishDialogComponent>,
-    private service: PreferencesService
-  ) {}
+
+  constructor(public dialogRef: MatDialogRef<PublishDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.isAssignmentsSelected = false;
-    this.dataSource.paginator = this.paginator;
   }
 
   close() {
@@ -57,12 +55,5 @@ export class PublishDialogComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: TableElemant): string {
-    if (!row) {
-      return `${this.isAllSelected() ? "select" : "deselect"} all`;
-    }
-    return `${
-      this.selection.isSelected(row) ? "deselect" : "select"
-    } row ${row.position + 1}`;
-  }
+
 }

@@ -1,5 +1,5 @@
 <div id="dashboard">
-  <mat-tab-group mat-align-tabs="start">
+  <mat-tab-group mat-align-tabs="start" *ngIf="assignments$ | async as assignments">
     <mat-tab>
       <ng-template mat-tab-label i18n="@@PREFERNCES">Preferences</ng-template>
       <ng-template matTabContent>
@@ -21,7 +21,7 @@
     <mat-tab>
       <ng-template mat-tab-label i18n="@@SUBMISSION">Submission</ng-template>
       <ng-template matTabContent>
-        <app-submission-shell></app-submission-shell>
+        <app-submission-shell [assignments]="assignments"></app-submission-shell>
       </ng-template>
     </mat-tab>
     <mat-tab disabled></mat-tab>
