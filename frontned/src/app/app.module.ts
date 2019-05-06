@@ -45,6 +45,8 @@ import { AppState } from './store/store-index';
 import { AssignmentsService } from './services/assigments.service';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { PreferencesResourcesProductsComponent } from './components/preferences/preferences-resources-products/preferences-resources-products.component';
+import { StudentShellComponent } from './components/student-shell/student-shell.component';
+import { MemberService } from './services/member.service';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { PreferencesResourcesProductsComponent } from './components/preferences/
     SubmissionShellComponent,
     TranslatePipe,
     DoughnutChartComponent,
-    PreferencesResourcesProductsComponent
+    PreferencesResourcesProductsComponent,
+    StudentShellComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,7 @@ import { PreferencesResourcesProductsComponent } from './components/preferences/
     BrowserAnimationsModule,
     MatTabsModule
   ],
-  providers: [TranslateService, AssignmentsService],
+  providers: [TranslateService, AssignmentsService, MemberService],
   entryComponents: [PublishDialogComponent],
   bootstrap: [AppComponent]
 })

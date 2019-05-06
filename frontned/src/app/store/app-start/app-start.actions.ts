@@ -3,11 +3,16 @@ export class GetCourseName {
     constructor(public payload: string) { }
 }
 
-export class GetUsername {
+export class SetUsername {
     static readonly type = "[App Start] Get User Name";
     constructor(public payload: string) { }
 }
 
 export class GetAssignmentInitialData {
     static readonly type = "[App Start] Get Assignment Initial Data";
+}
+
+export class SetUserType {
+    static readonly type = "[App Start] Set User Type";
+    constructor(public payload: number) { }
 }

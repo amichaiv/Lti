@@ -1,10 +1,11 @@
 <div class="header">
   <div style="display: inherit;align-items: center">
     <div style="font-size: 5em">{{courseName$ | async}}</div>
-    <div style="margin:0 1em;font-size: 2em">{{courseName$ | async}} Messages</div>
+    <div style="margin:0 1em;font-size: 2em">{{courseName$ | async}} <span i18n="@@MESSAGES">Messages</span></div>
   </div>
   <div style="display: inherit;align-items: center">
-    <div style="margin:0 1em"><button mat-raised-button color="primary">education hub</button></div>
+    <div style="margin:0 1em"><button mat-raised-button color="primary" i18n="@@EDUCATION_HUB">education hub</button>
+    </div>
     <div style="margin:0 1em">
       <mat-icon>notifications</mat-icon>
     </div>

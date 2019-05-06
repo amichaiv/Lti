@@ -1,6 +1,6 @@
 import { AppStartStateModel } from "./app-start.model";
 import { State, Action, StateContext, Selector, Store } from '@ngxs/store';
-import { GetCourseName, GetUsername, GetAssignmentInitialData } from './app-start.actions';
+import { GetCourseName, SetUsername, GetAssignmentInitialData, SetUserType } from './app-start.actions';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { AssignmentsService } from 'src/app/services/assigments.service';
 import { tap, catchError } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { SetMembers, SetNoOfStudents, SetNoOfTeachingAssistants, SetNoOfProjectG
         courseName: "",
         username: "",
         error: "",
+        userType: null,
         assignmentData: null
     }
 })
@@ -22,14 +23,20 @@ export class AppStartState {
     getAssignmentInitialData(ctx: StateContext<AppStartStateModel>) {
         return this.assignmentsService.getAssignmentData(this.localStorageService.getItem("assignmentGuid")).pipe(
             tap(data => {
-                this.store.dispatch(new GetCourseName(data.name));
+                console.log(data)
+                this.store.dispatch(new GetCourseName(data.courseName));
             }),
             catchError(err =>
                 of(ctx.patchState({ error: err }))
             )
         )
     }
-
+    @Action(SetUserType)
+    setUserType({ patchState }: StateContext<AppStartStateModel>, { payload }: SetUserType) {
+        patchState({
+            userType: payload
+        });
+    }
     @Action(GetCourseName)
     getCourseName(
         { patchState }: StateContext<AppStartStateModel>,
@@ -40,10 +47,10 @@ export class AppStartState {
         });
     }
 
-    @Action(GetUsername)
+    @Action(SetUsername)
     getUserName(
         { patchState }: StateContext<AppStartStateModel>,
-        { payload }: GetUsername
+        { payload }: SetUsername
     ) {
         patchState({
             username: payload

@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { Component, OnInit, Input } from "@angular/core";
+import { MatTableDataSource } from "@angular/material";
 import { SelectionModel } from "@angular/cdk/collections";
-import { ClassroomService } from "src/app/services/classroom.service";
-import { StudentsTableElement } from "../models/students-table.model";
-import { Observable } from 'rxjs';
+
+
 import { Assignment } from 'src/app/models/student-assignment.model';
-import { Store, Select } from '@ngxs/store';
-import { AssignmentsStateSelectors } from 'src/app/store/assignments/assignments.selectors';
+import { Store } from '@ngxs/store';
+
 import { AssignmentsService } from 'src/app/services/assigments.service';
 
 @Component({

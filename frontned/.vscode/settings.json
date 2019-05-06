@@ -1,0 +1,5 @@
+{
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/4bffb760-b503-4812-aefc-ab896bbc6368/resourceGroups/Web_App/providers/Microsoft.Web/sites/azure-edna",
+    "appService.deploySubpath": ""
+}

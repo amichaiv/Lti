@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
-import { TableElemant } from "../components/preferences/models/assignment-table.model";
-import { StudentsTableElement } from "../components/classroom/models/students-table.model";
+
 import { of, Observable } from 'rxjs';
-import { debug } from 'util';
+
 
 
 const allStudents: number = 152;

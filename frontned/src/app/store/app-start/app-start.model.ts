@@ -3,4 +3,5 @@ export class AppStartStateModel {
     username: string;
     assignmentData;
     error: string;
+    userType: number;
 }
